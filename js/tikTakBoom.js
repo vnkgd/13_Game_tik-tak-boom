@@ -5,7 +5,11 @@ tikTakBoom = {
         gameStatusField,
         textFieldQuestion,
         textFieldAnswer1,
-        textFieldAnswer2
+        textFieldAnswer2,
+        //Val - добавил ещё 2 ответа 
+        textFieldAnswer3,
+        textFieldAnswer4
+
     ) {
         this.boomTimer = 30;
         this.countOfPlayers = 2;
@@ -16,10 +20,14 @@ tikTakBoom = {
         this.textFieldQuestion = textFieldQuestion;
         this.textFieldAnswer1 = textFieldAnswer1;
         this.textFieldAnswer2 = textFieldAnswer2;
+        // Val - добавил ещё 2 ответа
+        this.textFieldAnswer3 = textFieldAnswer3;
+        this.textFieldAnswer4 = textFieldAnswer4;
 
         this.needRightAnswers = 3;
     },
 
+    // начало игры, обнуляем количество правильных ответов и выдаём надпись
     run() {
         this.state = 1;
 
@@ -30,6 +38,7 @@ tikTakBoom = {
         this.timer();
     },
 
+    // надписи сверху Игра началась (это в index.html), вопрос к игроку Вы проиграли
     turnOn() {
         this.gameStatusField.innerText += ` Вопрос игроку №${this.state}`;
 
@@ -60,19 +69,30 @@ tikTakBoom = {
 
         this.textFieldAnswer1.removeEventListener('click', answer1);
         this.textFieldAnswer2.removeEventListener('click', answer2);
+        // Val - добавил ещё 2 ответа
+        this.textFieldAnswer3.removeEventListener('click', answer3);
+        this.textFieldAnswer4.removeEventListener('click', answer4);
     },
 
     printQuestion(task) {
         this.textFieldQuestion.innerText = task.question;
         this.textFieldAnswer1.innerText = task.answer1.value;
         this.textFieldAnswer2.innerText = task.answer2.value;
+        // Val - добавил ещё 2 ответа
+        this.textFieldAnswer3.innerText = task.answer3.value;
+        this.textFieldAnswer4.innerText = task.answer4.value;
 
         this.textFieldAnswer1.addEventListener('click', answer1 = () => this.turnOff('answer1'));
         this.textFieldAnswer2.addEventListener('click', answer2 = () => this.turnOff('answer2'));
+        // Val - добавил ещё 2 ответа
+        this.textFieldAnswer3.addEventListener('click', answer3 = () => this.turnOff('answer3'));
+        this.textFieldAnswer4.addEventListener('click', answer4 = () => this.turnOff('answer4'));
+
 
         this.currentTask = task;
     },
 
+    // если время вышло, выходит это окно, или когда выиграли, и Вопрос с ответами стираются
     finish(result = 'lose') {
         this.state = 0;
         if (result === 'lose') {
@@ -85,6 +105,10 @@ tikTakBoom = {
         this.textFieldQuestion.innerText = ``;
         this.textFieldAnswer1.innerText = ``;
         this.textFieldAnswer2.innerText = ``;
+        // Val - добавил ещё 2 ответа
+        this.textFieldAnswer3.innerText = ``;
+        this.textFieldAnswer4.innerText = ``;
+
 
         console.log(this);
     },
