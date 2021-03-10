@@ -46,7 +46,7 @@ const tasks = `
         {
             "question": "Что определяет псевдокласс hover в CSS? Стиль элемента при ... курсора",
             "answer1": { "result": false, "value": "отведении от него" },
-            "answer2": { "result": false, "value": "ажатии на него" },
+            "answer2": { "result": false, "value": "нажатии на него" },
             "answer3": { "result": true, "value": "наведении на него" },
             "answer4": { "result": false, "value": "задержке на нём" }
         },
